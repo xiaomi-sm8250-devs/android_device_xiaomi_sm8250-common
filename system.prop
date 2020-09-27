@@ -24,6 +24,9 @@ persist.vendor.dpm.feature=1
 # Fwk detect
 ro.vendor.qti.va_aosp.support=1
 
+# Force triple frame buffers
+ro.surface_flinger.max_frame_buffer_acquired_buffers=3
+
 # IMS
 persist.dbg.volte_avail_ovr=1
 persist.dbg.vt_avail_ovr=1
