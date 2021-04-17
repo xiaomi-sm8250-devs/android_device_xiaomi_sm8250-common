@@ -102,3 +102,5 @@ genfscon sysfs /devices/virtual/misc/msm_multi_aac/wakeup                       
 genfscon sysfs /devices/virtual/misc/msm_qcelp/wakeup                                                                                              u:object_r:sysfs_wakeup:s0
 genfscon sysfs /devices/virtual/misc/msm_wma/wakeup                                                                                                u:object_r:sysfs_wakeup:s0
 genfscon sysfs /devices/virtual/misc/msm_wmapro/wakeup                                                                                             u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/884000.i2c/i2c-4/4-0066/wakeup										   u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/a600000.ssusb/wakeup											   u:object_r:sysfs_wakeup:s0

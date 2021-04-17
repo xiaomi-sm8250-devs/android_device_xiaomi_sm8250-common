@@ -1,0 +1,2 @@
+dontaudit fsck self:capability kill;
+
