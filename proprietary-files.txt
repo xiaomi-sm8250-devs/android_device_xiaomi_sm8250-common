@@ -747,7 +747,6 @@ vendor/lib64/vendor.qti.hardware.tui_comm@1.0.so
 # Vibrator firmware
 vendor/firmware/AcousticGuitar_RTP.bin
 vendor/firmware/Atlantis_RTP.bin
-vendor/firmware/aw8697_haptic.bin
 vendor/firmware/aw8697_rtp_1.bin
 vendor/firmware/bandage_RTP.bin
 vendor/firmware/Bottle_RTP.bin
