@@ -456,10 +456,14 @@ buildvariant=`getprop ro.build.type`
 case "$buildvariant" in
     "userdebug" | "eng")
         #set default loglevel to KERN_INFO
-        echo "4 6 1 7" > /proc/sys/kernel/printk
+        echo "6 6 1 7" > /proc/sys/kernel/printk
         ;;
     *)
         #set default loglevel to KERN_WARNING
         echo "4 4 1 4" > /proc/sys/kernel/printk
         ;;
 esac
+
+# modify qdss permission
+chown -h root.oem_2902 /sys/devices/platform/soc/6048000.tmc/coresight-tmc-etr/block_size 
+chmod 660 /sys/devices/platform/soc/6048000.tmc/coresight-tmc-etr/block_size
