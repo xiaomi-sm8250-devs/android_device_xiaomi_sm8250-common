@@ -9,7 +9,7 @@
 #include <sys/_system_properties.h>
 #include <sys/sysinfo.h>
 
-#include <libinit_kona.h>
+#include <libinit_lahaina.h>
 
 using android::base::GetProperty;
 

@@ -10,7 +10,7 @@ on early-boot
 
     chown system system /sys/class/backlight/panel0-backlight/brightness
 
-service vendor.light-xiaomi_kona /vendor/bin/hw/android.hardware.lights-service.xiaomi_kona
+service vendor.light-xiaomi_lahaina /vendor/bin/hw/android.hardware.lights-service.xiaomi_lahaina
     class hal
     user system
     group system

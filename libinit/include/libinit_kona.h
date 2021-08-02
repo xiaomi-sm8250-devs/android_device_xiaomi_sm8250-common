@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-#ifndef LIBINIT_KONA_H
-#define LIBINIT_KONA_H
+#ifndef LIBINIT_LAHAINA_H
+#define LIBINIT_LAHAINA_H
 
 #include <string>
 #include <vector>
@@ -41,4 +41,4 @@ void set_dalvik_heap(void);
 void property_override(std::string prop, std::string value, bool add = true);
 void set_ro_build_prop(const std::string &prop, const std::string &value, bool product = false);
 
-#endif // LIBINIT_KONA_H
+#endif // LIBINIT_LAHAINA_H

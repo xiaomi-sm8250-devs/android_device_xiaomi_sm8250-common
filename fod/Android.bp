@@ -5,15 +5,15 @@
 //
 
 soong_config_module_type {
-    name: "xiaomi_kona_fod_hal_cc_defaults",
+    name: "xiaomi_lahaina_fod_hal_cc_defaults",
     module_type: "cc_defaults",
-    config_namespace: "XIAOMI_KONA_FOD",
+    config_namespace: "XIAOMI_LAHAINA_FOD",
     value_variables: ["POS_X", "POS_Y", "SIZE"],
     properties: ["cppflags"],
 }
 
-xiaomi_kona_fod_hal_cc_defaults {
-    name: "xiaomi_kona_fod_hal_defaults",
+xiaomi_lahaina_fod_hal_cc_defaults {
+    name: "xiaomi_lahaina_fod_hal_defaults",
     soong_config_variables: {
         POS_X: {
             cppflags: ["-DFOD_POS_X=%s"],
@@ -28,14 +28,14 @@ xiaomi_kona_fod_hal_cc_defaults {
 }
 
 cc_binary {
-    name: "vendor.lineage.biometrics.fingerprint.inscreen@1.0-service.xiaomi_kona",
+    name: "vendor.lineage.biometrics.fingerprint.inscreen@1.0-service.xiaomi_lahaina",
     defaults: [
         "hidl_defaults",
-        "xiaomi_kona_fod_hal_defaults",
+        "xiaomi_lahaina_fod_hal_defaults",
     ],
     relative_install_path: "hw",
-    init_rc: ["vendor.lineage.biometrics.fingerprint.inscreen@1.0-service.xiaomi_kona.rc"],
-    vintf_fragments: ["vendor.lineage.biometrics.fingerprint.inscreen@1.0-service.xiaomi_kona.xml"],
+    init_rc: ["vendor.lineage.biometrics.fingerprint.inscreen@1.0-service.xiaomi_lahaina.rc"],
+    vintf_fragments: ["vendor.lineage.biometrics.fingerprint.inscreen@1.0-service.xiaomi_lahaina.xml"],
     srcs: ["service.cpp", "FingerprintInscreen.cpp"],
     shared_libs: [
         "libbase",
@@ -52,7 +52,7 @@ cc_binary {
 }
 
 cc_library_static {
-    name: "libfod_extension.xiaomi_kona",
+    name: "libfod_extension.xiaomi_lahaina",
     srcs: ["FodExtension.cpp"],
     include_dirs: [
         "frameworks/native/services/surfaceflinger/CompositionEngine/include"

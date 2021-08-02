@@ -5,7 +5,7 @@
 //
 
 cc_defaults {
-    name: "libinit_kona_defaults",
+    name: "libinit_lahaina_defaults",
     include_dirs: [
         "system/core/base/include",
         "system/core/init"
@@ -15,8 +15,8 @@ cc_defaults {
 }
 
 cc_library_static {
-    name: "libinit_kona",
-    defaults: ["libinit_kona_defaults"],
-    srcs: ["libinit_kona.cpp"],
+    name: "libinit_lahaina",
+    defaults: ["libinit_lahaina_defaults"],
+    srcs: ["libinit_lahaina.cpp"],
     export_include_dirs: ["include"],
 }

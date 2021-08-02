@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-#define LOG_TAG "vendor.lineage.biometrics.fingerprint.inscreen@1.0-service.xiaomi_kona"
+#define LOG_TAG "vendor.lineage.biometrics.fingerprint.inscreen@1.0-service.xiaomi_lahaina"
 
 #include <android-base/logging.h>
 #include <hidl/HidlTransportSupport.h>

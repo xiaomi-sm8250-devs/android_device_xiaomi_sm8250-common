@@ -14,8 +14,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#define LOG_TAG "android.hardware.biometrics.fingerprint@2.1-service.xiaomi_kona"
-#define LOG_VERBOSE "android.hardware.biometrics.fingerprint@2.1-service.xiaomi_kona"
+#define LOG_TAG "android.hardware.biometrics.fingerprint@2.1-service.xiaomi_lahaina"
+#define LOG_VERBOSE "android.hardware.biometrics.fingerprint@2.1-service.xiaomi_lahaina"
 
 #include <hardware/hw_auth_token.h>
 

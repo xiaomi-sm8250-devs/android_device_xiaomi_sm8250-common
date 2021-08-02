@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-COMMON_PATH := device/xiaomi/sm8250-common
+COMMON_PATH := device/xiaomi/sm8350-common
 
 # APEX
 DEXPREOPT_GENERATE_APEX_IMAGE := true
@@ -42,10 +42,10 @@ BOARD_USES_ALSA_AUDIO := true
 USE_CUSTOM_AUDIO_POLICY := 1
 
 # Bluetooth
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(COMMON_PATH)/bluetooth/include
+TARGET_USE_QTI_BT_STACK := true
 
 # Bootloader
-TARGET_BOOTLOADER_BOARD_NAME := kona
+TARGET_BOOTLOADER_BOARD_NAME := lahaina
 TARGET_NO_BOOTLOADER := true
 
 # Camera
@@ -74,9 +74,9 @@ TARGET_FS_CONFIG_GEN := $(COMMON_PATH)/config.fs
 
 # Fingerprint
 ifeq ($(TARGET_HAS_FOD),true)
-SOONG_CONFIG_NAMESPACES += XIAOMI_KONA_FOD
-SOONG_CONFIG_XIAOMI_KONA_FOD := POS_X POS_Y SIZE
-TARGET_SURFACEFLINGER_FOD_LIB := //$(COMMON_PATH):libfod_extension.xiaomi_kona
+SOONG_CONFIG_NAMESPACES += XIAOMI_LAHAINA_FOD
+SOONG_CONFIG_XIAOMI_LAHAINA_FOD := POS_X POS_Y SIZE
+TARGET_SURFACEFLINGER_FOD_LIB := //$(COMMON_PATH):libfod_extension.xiaomi_lahaina
 endif
 
 # HIDL
@@ -101,7 +101,7 @@ BOARD_KERNEL_SEPARATED_DTBO := true
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_CLANG_COMPILE := true
-TARGET_KERNEL_SOURCE := kernel/xiaomi/sm8250
+TARGET_KERNEL_SOURCE := kernel/xiaomi/sm8350
 
 # Partitions
 ifeq ($(PRODUCT_VIRTUAL_AB_OTA),true)
@@ -160,7 +160,7 @@ TARGET_COPY_OUT_VENDOR := vendor
 # Platform
 BOARD_VENDOR := xiaomi
 BOARD_USES_QCOM_HARDWARE := true
-TARGET_BOARD_PLATFORM := kona
+TARGET_BOARD_PLATFORM := lahaina
 
 # Power
 TARGET_TAP_TO_WAKE_NODE := "/sys/touchpanel/double_tap"
@@ -187,6 +187,7 @@ TARGET_USES_MKE2FS := true
 TARGET_RELEASETOOLS_EXTENSIONS := $(COMMON_PATH)
 
 # RIL
+CUSTOM_APNS_FILE := $(COMMON_PATH)/configs/apns-conf.xml
 ENABLE_VENDOR_RIL_SERVICE := true
 
 # Security patch level
@@ -226,4 +227,4 @@ WIFI_HIDL_UNIFIED_SUPPLICANT_SERVICE_RC_ENTRY := true
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # Inherit the proprietary files
-include vendor/xiaomi/sm8250-common/BoardConfigVendor.mk
+include vendor/xiaomi/sm8350-common/BoardConfigVendor.mk

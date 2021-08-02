@@ -1,9 +1,9 @@
 cc_binary {
-    name: "android.hardware.biometrics.fingerprint@2.1-service.xiaomi_kona",
+    name: "android.hardware.biometrics.fingerprint@2.1-service.xiaomi_lahaina",
     defaults: ["hidl_defaults"],
     relative_install_path: "hw",
-    init_rc: ["android.hardware.biometrics.fingerprint@2.1-service.xiaomi_kona.rc"],
-    vintf_fragments: ["android.hardware.biometrics.fingerprint@2.1-service.xiaomi_kona.xml"],
+    init_rc: ["android.hardware.biometrics.fingerprint@2.1-service.xiaomi_lahaina.rc"],
+    vintf_fragments: ["android.hardware.biometrics.fingerprint@2.1-service.xiaomi_lahaina.xml"],
     srcs: [
         "BiometricsFingerprint.cpp",
         "service.cpp",

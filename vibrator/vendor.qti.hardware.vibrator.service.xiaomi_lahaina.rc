@@ -1,0 +1,4 @@
+service vendor.qti.vibrator.xiaomi_lahaina /vendor/bin/hw/vendor.qti.hardware.vibrator.service.xiaomi_lahaina
+    class hal
+    user system
+    group system input
