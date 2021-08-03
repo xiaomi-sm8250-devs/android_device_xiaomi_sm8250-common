@@ -8,6 +8,7 @@
   {
    "repository" : "SnowCore8/xiaomi_sm8350_kernel",
    "remote"     : "github",
+   "target_path": "kernel/xiaomi/sm8350",
    "branch"     : "master"
  },
 ]
