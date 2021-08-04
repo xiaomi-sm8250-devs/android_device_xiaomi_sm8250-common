@@ -1,5 +1,6 @@
 
 # ADSP
+boot/root/vendor/lib/modules/5.4-gki/frpc-adsprpc.ko
 vendor/bin/adsprpcd
 vendor/lib/libadsprpc.so
 vendor/lib/libadsp_default_listener.so
@@ -89,6 +90,7 @@ vendor/lib64/com.dsi.ant@1.0.so
 vendor/lib64/hw/com.dsi.ant@1.0-impl.so
 
 # Alarm
+boot/root/vendor/lib/modules/5.4-gki/qcom-spmi-temp-alarm.ko
 -system_ext/framework/vendor.qti.hardware.alarm-V1.0-java.jar
 system_ext/lib/vendor.qti.hardware.alarm@1.0.so
 system_ext/lib64/vendor.qti.hardware.alarm@1.0.so
@@ -772,8 +774,6 @@ vendor/camera/fonts/FZMiaoWuJW.ttf
 vendor/camera/fonts/MFYueYuan-Regular.ttf
 vendor/camera/fonts/MI+LanTing_GB+Outside+YS_V2.3_20160322.ttf
 vendor/camera/fonts/MIUI_Time.ttf
-vendor/camera/mimoji/data.zip
-vendor/camera/mimoji/model2.zip
 vendor/camera/model/model_front.dlc
 vendor/etc/camera/102_SummerDay.png
 vendor/etc/camera/103_Fantasy.png
@@ -945,10 +945,13 @@ vendor/lib64/libqisl.so
 vendor/lib64/libQSEEComAPI.so
 vendor/lib64/librpmb.so
 vendor/lib64/libsdedrm.so
+vendor/lib64/libsecureui.so
+vendor/lib64/libSecureUILib.so
 vendor/lib64/libsecureui_svcsock.so
 vendor/lib64/libsi.so
 vendor/lib64/libspl.so
 vendor/lib64/libssd.so
+vendor/lib64/libStDrvInt.so
 vendor/lib64/libtzdrmgenprov.so
 
 # DRM-HDCP
@@ -964,6 +967,8 @@ vendor/lib64/libhdcpsrm.so
 vendor/lib64/libmm-hdcpmgr.so
 
 # DRM-Hardware
+-boot/root/vendor/etc/vintf/manifest/manifest_android.hardware.drm@1.3-service.clearkey.xml
+-boot/root/vendor/etc/vintf/manifest/manifest_android.hardware.drm@1.3-service.widevine.xml
 vendor/bin/hw/android.hardware.drm@1.3-service.clearkey
 vendor/bin/hw/android.hardware.drm@1.3-service.widevine
 vendor/etc/init/android.hardware.drm@1.1-service.wfdhdcp.rc
@@ -1177,6 +1182,8 @@ vendor/lib64/libmfido.so
 vendor/lib64/vendor.xiaomi.hardware.mfidoca@1.0.so
 
 # Fingerprint
+boot/root/vendor/lib/modules/5.4-gki/goodix_fod.ko
+boot/root/vendor/lib/modules/goodix_fod.ko
 -vendor/app/QFingerprintService/QFingerprintService.apk
 vendor/etc/permissions/qti_fingerprint_interface.xml
 vendor/firmware/fingerprint_record_rtp.bin
@@ -1580,10 +1587,14 @@ vendor/lib64/libgnsspps.so
 vendor/lib64/libgps.utils.so
 
 # Gatekeeper
+boot/root/vendor/lib64/hw/android.hardware.gatekeeper@1.0-impl-qti.so
 vendor/bin/hw/android.hardware.gatekeeper@1.0-service-qti
 vendor/etc/init/android.hardware.gatekeeper@1.0-service-qti.rc
 vendor/lib/hw/android.hardware.gatekeeper@1.0-impl-qti.so
 vendor/lib64/hw/android.hardware.gatekeeper@1.0-impl-qti.so
+
+# Google
+vendor/etc/permissions/com.google.android.feature.PREMIER_TIER.xml
 
 # Graphics
 vendor/lib/egl/eglSubDriverAndroid.so
@@ -1634,11 +1645,20 @@ vendor/lib64/libsdm-disp-vndapis.so
 vendor/lib64/libtinyxml2_1.so
 
 # Health
+boot/root/vendor/bin/hw/android.hardware.health@2.1-service
+boot/root/vendor/etc/init/android.hardware.health@2.1-service.rc
+-boot/root/vendor/etc/vintf/manifest/android.hardware.health@2.1.xml
 vendor/bin/hw/android.hardware.health@2.1-service
 vendor/etc/init/android.hardware.health@2.1-service.rc
 -vendor/etc/vintf/manifest/android.hardware.health@2.1.xml
 vendor/lib/hw/android.hardware.health@2.0-impl-2.1-qti.so
 vendor/lib64/hw/android.hardware.health@2.0-impl-2.1-qti.so
+
+# HotwordEnrollment
+-product/priv-app/HotwordEnrollmentOKGoogleHEXAGON/HotwordEnrollmentOKGoogleHEXAGON.apk
+-product/priv-app/HotwordEnrollmentXGoogleHEXAGON/HotwordEnrollmentXGoogleHEXAGON.apk
+system_ext/etc/permissions/com.android.hotwordenrollment.common.util.xml
+-system_ext/framework/com.android.hotwordenrollment.common.util.jar
 
 # IPA-Firmware
 vendor/firmware/ipa_fws.b00
@@ -1650,6 +1670,14 @@ vendor/firmware/ipa_fws.elf
 vendor/firmware/ipa_fws.mdt
 
 # Keymaster
+boot/root/vendor/lib64/libkeymasterdeviceutils.so
+boot/root/vendor/lib64/libkeymasterprovision.so
+boot/root/vendor/lib64/libkeymasterutils.so
+boot/root/vendor/lib64/libkeystore-engine-wifi-hidl.so
+boot/root/vendor/lib64/libkeystore-wifi-hidl.so
+boot/root/vendor/lib64/libqtikeymaster4.so
+boot/root/vendor/lib64/libspcom.so
+boot/root/vendor/lib64/vendor.qti.hardware.wifi.keystore@1.0.so
 system_ext/lib64/vendor.qti.hardware.wifi.keystore@1.0.so
 vendor/bin/hw/android.hardware.keymaster@4.0-service-qti
 vendor/bin/hw/android.hardware.keymaster@4.0-strongbox-service-qti
@@ -1807,6 +1835,8 @@ vendor/lib64/libOmxQcelp13Enc.so
 vendor/lib64/libstagefrighthw.so
 
 # NFC
+boot/root/vendor/lib/modules/5.4-gki/nfc_i2c.ko
+boot/root/vendor/lib/modules/nfc_i2c.ko
 system_ext/lib/vendor.nxp.hardware.nfc@1.0.so
 system_ext/lib/vendor.nxp.hardware.nfc@1.1.so
 system_ext/lib/vendor.nxp.hardware.nfc@2.0.so
@@ -2322,6 +2352,7 @@ vendor/lib64/vendor.qti.hardware.scve.objecttracker@1.0.so
 vendor/lib64/vendor.qti.hardware.scve.panorama@1.0.so
 
 # SSR
+boot/root/vendor/lib/modules/5.4-gki/subsystem_restart.ko
 vendor/bin/ssr_diag
 vendor/bin/ssr_setup
 vendor/bin/subsystem_ramdump
@@ -2541,6 +2572,7 @@ vendor/lib64/hw/vendor.qti.hardware.soter@1.0-impl.so
 vendor/lib64/vendor.qti.hardware.soter@1.0.so
 
 # TUI
+boot/root/vendor/lib64/vendor.qti.hardware.tui_comm@1.0.so
 system_ext/lib/vendor.qti.hardware.tui_comm@1.0.so
 system_ext/lib64/vendor.qti.hardware.tui_comm@1.0.so
 vendor/bin/hw/vendor.qti.hardware.tui_comm@1.0-service-qti
@@ -2583,6 +2615,7 @@ vendor/lib64/libtime_genoff.so
 vendor/lib/libstreamparser.so
 
 # Vibrator
+-boot/root/vendor/etc/vintf/manifest/vendor.qti.hardware.vibrator.service.xml
 vendor/bin/hw/vendor.qti.hardware.vibrator.service
 vendor/bin/hw/vendor.xiaomi.hardware.vibratorfeature@1.0-service
 vendor/etc/init/vendor.qti.hardware.vibrator.service.rc
@@ -2715,6 +2748,14 @@ vendor/lib64/vendor.qti.hardware.wifi.wifilearner@1.0.so
 vendor/lib64/vendor.qti.hardware.wifi@1.0.so
 
 # Xiaomi
+boot/root/vendor/bin/hw/vendor.xiaomi.hw.touchfeature@1.0-service
+-boot/root/vendor/etc/vintf/manifest/vendor.xiaomi.hw.touchfeature@1.0-service.xml
+boot/root/vendor/lib/hw/vendor.xiaomi.hw.touchfeature@1.0-impl.so
+boot/root/vendor/lib/modules/5.4-gki/xiaomi_touch.ko
+boot/root/vendor/lib/modules/xiaomi_touch.ko
+boot/root/vendor/lib/vendor.xiaomi.hw.touchfeature@1.0.so
+boot/root/vendor/lib64/hw/vendor.xiaomi.hw.touchfeature@1.0-impl.so
+boot/root/vendor/lib64/vendor.xiaomi.hw.touchfeature@1.0.so
 system_ext/lib/vendor.xiaomi.hardware.fingerprintextension@1.0.so
 system_ext/lib64/vendor.xiaomi.hardware.fingerprintextension@1.0.so
 vendor/bin/hw/android.hardware.dumpstate@1.1-service.xiaomi
@@ -2915,6 +2956,7 @@ system_ext/etc/init/vendor.qti.hardware.qccsyshal@1.0-service.rc
 system_ext/etc/NOTICE_GPL.xml.gz
 system_ext/etc/permissions/android.software.verified_boot.xml
 system_ext/etc/permissions/com.android.carrierconfig.xml
+system_ext/etc/permissions/com.android.cellbroadcastreceiver.xml
 system_ext/etc/permissions/com.android.emergency.xml
 system_ext/etc/permissions/com.android.settings.xml
 system_ext/etc/permissions/com.android.storagemanager.xml
@@ -2926,7 +2968,7 @@ system_ext/etc/permissions/com.qualcomm.qti.izattools.xml
 system_ext/etc/permissions/embms-noship_product_privapp_permissions_qti.xml
 system_ext/etc/permissions/lpa.xml
 system_ext/etc/permissions/privapp-permissions-com.beyondGnssService.location.xml
-system_ext/etc/permissions/privapp-permissions-google-system-ext.xml
+system_ext/etc/permissions/privapp-permissions-google-se.xml
 system_ext/etc/permissions/privapp-permissions-miui-settings.xml
 system_ext/etc/permissions/privapp-permissions-qti-system-ext.xml
 system_ext/etc/permissions/RemoteSimlock.xml
@@ -3186,7 +3228,9 @@ system_ext/lib64/vendor.qti.hardware.systemhelper@1.0.so
 system_ext/lib64/vendor.qti.qspmhal@1.0.so
 -system_ext/priv-app/beyondGnssService/beyondGnssService.apk
 -system_ext/priv-app/CarrierConfig/CarrierConfig.apk
+-system_ext/priv-app/CellBroadcastAppPlatform/CellBroadcastAppPlatform.apk
 -system_ext/priv-app/EmergencyInfo/EmergencyInfo.apk
+-system_ext/priv-app/GoogleFeedback/GoogleFeedback.apk
 -system_ext/priv-app/GoogleOneTimeInitializer/GoogleOneTimeInitializer.apk
 -system_ext/priv-app/GoogleServicesFramework/GoogleServicesFramework.apk
 system_ext/priv-app/ims/lib/arm64/libimscamera_jni.so
@@ -3201,8 +3245,32 @@ system_ext/priv-app/Settings/lib/arm64/libtess.so
 -system_ext/priv-app/Settings/Settings.apk
 -system_ext/priv-app/StorageManager/StorageManager.apk
 -system_ext/priv-app/WallpaperCropper/WallpaperCropper.apk
-boot/root/
-boot/root/vendor/etc/charger_fstab.qti
+boot/root/vendor/bin/vndservicemanager
+boot/root/vendor/etc/init/vndservicemanager.rc
+boot/root/vendor/lib/libnos_datagram.so
+boot/root/vendor/lib/libnos_transport.so
+boot/root/vendor/lib64/libdiag.so
+boot/root/vendor/lib64/libdrm.so
+boot/root/vendor/lib64/libdrmfs.so
+boot/root/vendor/lib64/libdrmtime.so
+boot/root/vendor/lib64/libGPreqcancel.so
+boot/root/vendor/lib64/libGPreqcancel_svc.so
+boot/root/vendor/lib64/libnos_datagram.so
+boot/root/vendor/lib64/libnos_transport.so
+boot/root/vendor/lib64/libops.so
+boot/root/vendor/lib64/libqcbor.so
+boot/root/vendor/lib64/libqdutils.so
+boot/root/vendor/lib64/libqisl.so
+boot/root/vendor/lib64/libQSEEComAPI.so
+boot/root/vendor/lib64/libqservice.so
+boot/root/vendor/lib64/librpmb.so
+boot/root/vendor/lib64/libsecureui.so
+boot/root/vendor/lib64/libSecureUILib.so
+boot/root/vendor/lib64/libsecureui_svcsock.so
+boot/root/vendor/lib64/libssd.so
+boot/root/vendor/lib64/libStDrvInt.so
+boot/root/vendor/lib64/libtime_genoff.so
+boot/root/vendor/manifest.xml
 -vendor/app/CACertService/CACertService.apk
 -vendor/app/EidService_V2/EidService_V2.apk
 -vendor/app/IconShapeOverlay/IconShapeOverlay.apk
@@ -3355,12 +3423,6 @@ vendor/bin/wfdvndservice
 vendor/bin/wifilearner
 vendor/bin/xtwifi-client
 vendor/bin/xtwifi-inet-agent
--vendor/data-app/BaiduIME/BaiduIME.apk
--vendor/data-app/com.iflytek.inputmethod.miui/com.iflytek.inputmethod.miui.apk
--vendor/data-app/Health/Health.apk
--vendor/data-app/SmartHome/SmartHome.apk
--vendor/data-app/wps-lite/wps-lite.apk
--vendor/data-app/XMRemoteController/XMRemoteController.apk
 vendor/etc/1-SN1X0_SPC.txt
 vendor/etc/audio-test-config
 vendor/etc/audio/sku_lahaina/audio_configs.xml
@@ -3407,6 +3469,7 @@ vendor/etc/audio/sku_shima/sound_trigger_mixer_paths_shimaqrd.xml
 vendor/etc/audio/sku_shima/sound_trigger_platform_info.xml
 vendor/etc/audio/sku_shima_qssi/audio_policy_configuration.xml
 vendor/etc/charger_diag.cfg
+vendor/etc/charger_fstab.qti
 vendor/etc/charger_fw_fstab.qti
 vendor/etc/cirrus.cfg
 vendor/etc/cit_param_config.json
@@ -3418,6 +3481,7 @@ vendor/etc/cvp/v2.1/facedetection/model2.dat
 vendor/etc/default-permissions/com.qualcomm.qti.cne.xml
 vendor/etc/default.lm
 vendor/etc/device_features/venus.xml
+vendor/etc/device_info.json
 vendor/etc/device_sar_config.xml
 vendor/etc/display/advanced_sf_offsets.xml
 vendor/etc/display/DPU660.xml
@@ -3612,8 +3676,6 @@ vendor/etc/ultrasound.wav
 vendor/etc/video_system_specs.json
 vendor/etc/vmmgr.conf
 vendor/etc/wifibt_diag.cfg
-vendor/etc/XiaoAiNiZaiNa.uim
-vendor/etc/XiaoAiTongXue.uim
 vendor/lib/btaudio_offload_if.so
 vendor/lib/carwatchdog_aidl_interface-V2-ndk_platform.so
 vendor/lib/com.qti.chiusecaseselector.so
@@ -3995,7 +4057,6 @@ vendor/lib64/libQ6MSFR_manager_stub.so
 vendor/lib64/libqc2colorconvertfilter.so
 vendor/lib64/libqc2filter.so
 vendor/lib64/libqc2vppfilter.so
-vendor/lib64/libqcbor.so
 vendor/lib64/libqcc_file_agent.so
 vendor/lib64/libqcodec2_base.so
 vendor/lib64/libqcodec2_basecodec.so
