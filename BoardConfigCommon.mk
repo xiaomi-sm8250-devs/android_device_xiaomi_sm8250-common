@@ -4,10 +4,11 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-COMMON_PATH := device/xiaomi/sm8350-common
+BUILD_BROKEN_DUP_RULES := true
 
-# APEX
-DEXPREOPT_GENERATE_APEX_IMAGE := true
+BOARD_VENDOR := xiaomi
+
+COMMON_PATH := device/xiaomi/sm8350-common
 
 # Architecture
 TARGET_ARCH := arm64
@@ -24,29 +25,78 @@ TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := generic
 TARGET_2ND_CPU_VARIANT_RUNTIME := kryo385
 
+TARGET_USES_64_BIT_BINDER := true
+
+# Bootloader
+TARGET_BOOTLOADER_BOARD_NAME := lahaina
+TARGET_NO_BOOTLOADER := true
+
+# Kernel
+BOARD_BOOT_HEADER_VERSION := 3
+BOARD_KERNEL_BASE := 0x00000000
+BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom androidboot.console=ttyMSM0 androidboot.memcg=1 lpm_levels.sleep_disabled=1 video=vfb:640x400,bpp=32,memsize=3072000 msm_rtb.filter=0x237 service_locator.enable=1 androidboot.usbcontroller=a600000.dwc3 swiotlb=2048 loop.max_part=7 cgroup.memory=nokmem,nosocket reboot=panic_warm
+BOARD_KERNEL_IMAGE_NAME := Image
+BOARD_KERNEL_PAGESIZE := 4096
+BOARD_KERNEL_SEPARATED_DTBO := true
+BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
+KERNEL_LD := LD=ld.lld
+TARGET_KERNEL_ADDITIONAL_FLAGS := DTC_EXT=$(shell pwd)/prebuilts/misc/linux-x86/dtc/dtc
+TARGET_KERNEL_SOURCE := kernel/xiaomi/sm8350
+TARGET_KERNEL_CLANG_COMPILE := true
+TARGET_KERNEL_CONFIG := vendor/todo
+
+# Kernel modules
+BOARD_VENDOR_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/modules.load))
+BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/modules.load.recovery))
+
+# Platform
+BOARD_USES_QCOM_HARDWARE := true
+TARGET_BOARD_PLATFORM := lahaina
+
+# Properties
+TARGET_ODM_PROP += $(COMMON_PATH)/odm.prop
+TARGET_SYSTEM_PROP += $(COMMON_PATH)/system.prop
+TARGET_VENDOR_PROP += $(COMMON_PATH)/vendor.prop
+
+# A/B
+AB_OTA_UPDATER := true
+
+AB_OTA_PARTITIONS += \
+    boot \
+    dtbo \
+    odm \
+    product \
+    system \
+    system_ext \
+    vbmeta \
+    vbmeta_system \
+    vendor \
+    vendor_boot
+
+# ANT+
+BOARD_ANT_WIRELESS_DEVICE := "qualcomm-hidl"
+
 # Audio
 AUDIO_FEATURE_ENABLED_AHAL_EXT := false
 AUDIO_FEATURE_ENABLED_DLKM := true
 AUDIO_FEATURE_ENABLED_DS2_DOLBY_DAP := false
 AUDIO_FEATURE_ENABLED_DTS_EAGLE := false
 AUDIO_FEATURE_ENABLED_DYNAMIC_LOG := false
-AUDIO_FEATURE_ENABLED_COMPRESS_VOIP := false
+AUDIO_FEATURE_ENABLED_EXT_AMPLIFIER := true
 AUDIO_FEATURE_ENABLED_EXTENDED_COMPRESS_FORMAT := true
 AUDIO_FEATURE_ENABLED_GEF_SUPPORT := true
+AUDIO_FEATURE_ENABLED_GKI := true
 AUDIO_FEATURE_ENABLED_HW_ACCELERATED_EFFECTS := false
 AUDIO_FEATURE_ENABLED_INSTANCE_ID := true
 AUDIO_FEATURE_ENABLED_PROXY_DEVICE := true
 AUDIO_FEATURE_ENABLED_SSR := false
+BOARD_SUPPORTS_OPENSOURCE_STHAL := true
 BOARD_SUPPORTS_SOUND_TRIGGER := true
 BOARD_USES_ALSA_AUDIO := true
 USE_CUSTOM_AUDIO_POLICY := 1
 
 # Bluetooth
 TARGET_USE_QTI_BT_STACK := true
-
-# Bootloader
-TARGET_BOOTLOADER_BOARD_NAME := lahaina
-TARGET_NO_BOOTLOADER := true
 
 # Camera
 TARGET_USES_QTI_CAMERA_DEVICE := true
@@ -62,9 +112,7 @@ TARGET_USES_GRALLOC1 := true
 TARGET_USES_GRALLOC4 := true
 TARGET_USES_HWC2 := true
 TARGET_USES_ION := true
-ifeq ($(TARGET_HAS_FOD),true)
 TARGET_USES_FOD_ZPOS := true
-endif
 
 # DRM
 TARGET_ENABLE_MEDIADRM_64 := true
@@ -73,35 +121,21 @@ TARGET_ENABLE_MEDIADRM_64 := true
 TARGET_FS_CONFIG_GEN := $(COMMON_PATH)/config.fs
 
 # Fingerprint
-ifeq ($(TARGET_HAS_FOD),true)
 SOONG_CONFIG_NAMESPACES += XIAOMI_LAHAINA_FOD
 SOONG_CONFIG_XIAOMI_LAHAINA_FOD := POS_X POS_Y SIZE
 TARGET_SURFACEFLINGER_FOD_LIB := //$(COMMON_PATH):libfod_extension.xiaomi_lahaina
-endif
 
 # HIDL
-DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := $(COMMON_PATH)/framework_compatibility_matrix.xml
-DEVICE_MATRIX_FILE += $(COMMON_PATH)/compatibility_matrix.xml
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := \
+    $(COMMON_PATH)/device_framework_matrix.xml \
+    vendor/lineage/config/device_framework_matrix.xml
+DEVICE_MATRIX_FILE := $(COMMON_PATH)/compatibility_matrix.xml
 DEVICE_MANIFEST_FILE += $(COMMON_PATH)/manifest.xml
 ODM_MANIFEST_SKUS += nfc
 ODM_MANIFEST_NFC_FILES := $(COMMON_PATH)/manifest_nfc.xml
 
-# Kernel
-ifeq ($(PRODUCT_VIRTUAL_AB_OTA),true)
-BOARD_BOOT_HEADER_VERSION := 3
-else
-BOARD_BOOT_HEADER_VERSION := 2
-endif
-BOARD_KERNEL_BASE := 0x00000000
-BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom androidboot.console=ttyMSM0 androidboot.memcg=1 lpm_levels.sleep_disabled=1 msm_rtb.filter=0x237 service_locator.enable=1 androidboot.usbcontroller=a600000.dwc3 swiotlb=2048 loop.max_part=7 cgroup.memory=nokmem,nosocket reboot=panic_warm
-BOARD_KERNEL_CMDLINE += androidboot.init_fatal_reboot_target=recovery
-BOARD_KERNEL_IMAGE_NAME := Image
-BOARD_KERNEL_PAGESIZE := 4096
-BOARD_KERNEL_SEPARATED_DTBO := true
-BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
-TARGET_KERNEL_ARCH := arm64
-TARGET_KERNEL_CLANG_COMPILE := true
-TARGET_KERNEL_SOURCE := kernel/xiaomi/sm8350
+# Metadata
+BOARD_USES_METADATA_PARTITION := true
 
 # Partitions
 ifeq ($(PRODUCT_VIRTUAL_AB_OTA),true)
@@ -157,31 +191,18 @@ TARGET_COPY_OUT_PRODUCT := product
 TARGET_COPY_OUT_SYSTEM_EXT := system_ext
 TARGET_COPY_OUT_VENDOR := vendor
 
-# Platform
-BOARD_VENDOR := xiaomi
-BOARD_USES_QCOM_HARDWARE := true
-TARGET_BOARD_PLATFORM := lahaina
-
 # Power
 TARGET_TAP_TO_WAKE_NODE := "/sys/touchpanel/double_tap"
 
-# Properties
-TARGET_ODM_PROP += $(COMMON_PATH)/odm.prop
-TARGET_SYSTEM_PROP += $(COMMON_PATH)/system.prop
-TARGET_VENDOR_PROP += $(COMMON_PATH)/vendor.prop
+
 
 # Recovery
-ifeq ($(PRODUCT_VIRTUAL_AB_OTA),true)
-TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/rootdir/etc/fstab_AB.qcom
-else
-TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/rootdir/etc/fstab.qcom
-BOARD_INCLUDE_RECOVERY_DTBO := true
-endif
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
+BOARD_USES_RECOVERY_AS_BOOT := true
+TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/rootdir/etc/fstab.qcom
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
-TARGET_USES_MKE2FS := true
 
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := $(COMMON_PATH)
