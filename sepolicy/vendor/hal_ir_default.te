@@ -1,4 +1,0 @@
-allow hal_ir_default lirc_device:{
-  chr_file
-  file
-} rw_file_perms;
