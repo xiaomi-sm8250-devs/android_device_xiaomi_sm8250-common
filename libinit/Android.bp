@@ -16,6 +16,7 @@ cc_defaults {
 
 cc_library_static {
     name: "libinit_lahaina",
+    recovery_available: true,
     defaults: ["libinit_lahaina_defaults"],
     srcs: ["libinit_lahaina.cpp"],
     export_include_dirs: ["include"],

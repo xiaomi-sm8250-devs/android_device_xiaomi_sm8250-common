@@ -1,0 +1,4 @@
+allow system_server proc_last_kmsg:file r_file_perms;
+
+# Allow system_server to read Fast Charging status
+allow system_server vendor_sysfs_battery_supply:file { getattr open read };
